@@ -1,0 +1,40 @@
+{
+  "name": "Mumbai Rentals",
+  "short_name": "MumbaiRentals",
+  "description": "Find verified rental homes in Malad, Kandivali & Borivali. WhatsApp shortlist in 10 minutes.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020817",
+  "theme_color": "#020817",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Find a Flat",
+      "short_name": "Find Flat",
+      "url": "/?openForm=1",
+      "description": "Submit your rental requirements"
+    },
+    {
+      "name": "WhatsApp Us",
+      "short_name": "WhatsApp",
+      "url": "https://wa.me/917498369191",
+      "description": "Chat with us directly"
+    }
+  ],
+  "categories": ["lifestyle", "business"],
+  "lang": "en-IN"
+}
