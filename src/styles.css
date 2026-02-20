@@ -1,0 +1,276 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Premium button */
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-black shadow-[0_10px_30px_rgba(0,0,0,0.25)] ring-1 ring-white/30 transition;
+}
+.btn-primary:hover {
+  @apply -translate-y-0.5 shadow-[0_18px_40px_rgba(0,0,0,0.35)];
+}
+.btn-primary:active {
+  @apply translate-y-0 shadow-[0_10px_28px_rgba(0,0,0,0.28)];
+}
+
+.btn-dark {
+  @apply inline-flex items-center justify-center rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-semibold text-white shadow-sm ring-1 ring-zinc-900/10 transition;
+}
+.btn-dark:hover {
+  @apply bg-zinc-900;
+}
+
+/* Reveal-on-scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .btn-primary,
+  .btn-dark {
+    transition: none;
+  }
+}
+
+:root { color-scheme: light; }
+
+* { -webkit-tap-highlight-color: transparent; }
+
+.container-pad { @apply px-4; }
+
+.section { @apply py-10; }
+.section-title { @apply text-2xl font-semibold tracking-tight; }
+.section-subtitle { @apply mt-1 text-sm text-zinc-500; }
+
+.input {
+  @apply w-full rounded-xl border border-zinc-200 bg-white px-3 py-3 text-sm outline-none
+  placeholder:text-zinc-400 focus:border-zinc-900 focus:ring-2 focus:ring-zinc-900/10;
+}
+
+.select {
+  @apply w-full rounded-xl border border-zinc-200 bg-white px-3 py-3 text-sm outline-none
+  focus:border-zinc-900 focus:ring-2 focus:ring-zinc-900/10;
+}
+
+.label { @apply text-xs font-medium text-zinc-700; }
+
+.card { @apply rounded-2xl border border-zinc-200 bg-white shadow-soft; }
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-full bg-zinc-900 px-5 py-3 text-sm font-semibold
+  text-white shadow-sm transition active:scale-[0.99];
+}
+.btn-ghost {
+  @apply inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm
+  font-semibold text-white backdrop-blur transition hover:bg-white/15 active:scale-[0.99];
+}
+
+
+/* Hide scrollbar (mobile nav chips) */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ---- Pro polish: background noise + blobs + shimmer + check ---- */
+.bg-noise {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  mix-blend-mode: overlay;
+}
+
+@keyframes blobFloat {
+  0% { transform: translate3d(0,0,0) scale(1); }
+  33% { transform: translate3d(18px,-24px,0) scale(1.03); }
+  66% { transform: translate3d(-22px,18px,0) scale(0.98); }
+  100% { transform: translate3d(0,0,0) scale(1); }
+}
+
+.blob {
+  animation: blobFloat 10s ease-in-out infinite;
+  will-change: transform;
+}
+.blob-delay { animation-delay: -2.5s; }
+.blob-delay2 { animation-delay: -5s; }
+
+@keyframes shimmerMove {
+  0% { transform: translateX(-40%); opacity: 0.0; }
+  10% { opacity: 0.35; }
+  50% { opacity: 0.55; }
+  90% { opacity: 0.30; }
+  100% { transform: translateX(40%); opacity: 0.0; }
+}
+.shimmer {
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+  animation: shimmerMove 1.5s ease-in-out infinite;
+}
+
+@keyframes checkDraw {
+  from { stroke-dashoffset: 60; opacity: 0.1; }
+  to { stroke-dashoffset: 0; opacity: 1; }
+}
+.check-path {
+  stroke: #34d399; /* emerald-400-ish */
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: checkDraw 700ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob, .shimmer, .check-path { animation: none !important; }
+  .check-path { stroke-dashoffset: 0; opacity: 1; }
+}
+
+
+/* Accessibility: consistent focus rings */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.35);
+  border-radius: 12px;
+}
+
+/* Micro-interactions */
+.hover-lift {
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+.hover-lift:active {
+  transform: translateY(0);
+}
+
+.card-premium {
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 16px 50px rgba(0,0,0,0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-lift {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* ── Confetti animation ── */
+@keyframes confettiFall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  60% { opacity: 0.8; }
+  100% { transform: translateY(200px) rotate(360deg); opacity: 0; }
+}
+.animate-confetti {
+  animation: confettiFall 1.2s ease-in forwards;
+}
+
+/* ── Light mode override ── */
+html.light-mode {
+  color-scheme: light;
+}
+html.light-mode body {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+/* Theme transitions: only on body bg, not every element */
+body {
+  transition: background-color 200ms ease;
+}
+
+/* ── Premium font ── */
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* ── Safe area for iPhone notch/home bar ── */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ── Mobile: ensure SmartCtaBar doesn't cover content ── */
+@media (max-width: 768px) {
+  .page-bottom-pad {
+    padding-bottom: 96px;
+  }
+}
+
+/* ── Touch target minimum 44px ── */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Prevent horizontal scroll on mobile ── */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* ── Better mobile range input ── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.15);
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #10b981;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(16,185,129,0.4);
+}
+input[type="range"].light::-webkit-slider-thumb {
+  background: #059669;
+}
+
+/* ── Mobile: fix text overflow in cards ── */
+@media (max-width: 640px) {
+  .truncate-mobile {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 140px;
+  }
+}
+
+/* ── Smooth scrolling with offset for fixed navbar ── */
+[id] {
+  scroll-margin-top: 96px;
+}
+
+/* ── Remove framer-motion layout shift on mobile ── */
+.framer-fix {
+  transform: translateZ(0);
+  will-change: auto;
+}
